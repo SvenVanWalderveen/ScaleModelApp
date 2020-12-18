@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ScaleModelDomain.Base.Storage;
 using ScaleModelDomain.Database.Entities.Manuals;
 using ScaleModelDomain.Database.Entities.Projects;
-using ScaleModelDomain.Storage;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ScaleModelDomain.Database.Context
 {

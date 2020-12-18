@@ -1,10 +1,10 @@
-﻿using ScaleModelDomain.Storage.FileSystem.DataModels;
-using ScaleModelDomain.Storage.FileSystem.Managers;
+﻿using ScaleModelDomain.Base.Storage;
+using ScaleModelDomain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ScaleModelDomain.Storage.Cache.Managers
+namespace ScaleModelDomain.Managers
 {
     internal class CacheManager
     {
@@ -12,7 +12,7 @@ namespace ScaleModelDomain.Storage.Cache.Managers
         {
             //Read config file
             ResponseEnvelopeWithDataResult<ConfigurationModel> callResult = ConfigurationManager.ReadConfigFromFile();
-            if(callResult.CallSuccessfull)
+            if (callResult.CallSuccessfull)
             {
                 UpdateConfig(callResult.DataResult);
             }
@@ -25,11 +25,11 @@ namespace ScaleModelDomain.Storage.Cache.Managers
 
         internal static void UpdateConfig(ConfigurationModel config)
         {
-            AppCache.Config = config;
+            ApplicationCache.Config = config;
         }
         internal static bool HasConfig()
         {
-            return AppCache.Config != null;
+            return ApplicationCache.Config != null;
         }
         #endregion
 

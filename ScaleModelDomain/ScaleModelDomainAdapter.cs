@@ -1,7 +1,4 @@
-﻿using ScaleModelDomain.Storage.Cache.Managers;
-using ScaleModelDomain.Storage.FileSystem;
-using ScaleModelDomain.Storage.FileSystem.Managers;
-using System;
+﻿using ScaleModelDomain.Managers;
 
 namespace ScaleModelDomain
 {
@@ -13,29 +10,5 @@ namespace ScaleModelDomain
 
             ConfigurationManager.InitLocalStorage();
         }
-
-        //private static void SaveErrorMessageToCache(Exception ex)
-        //{
-        //    CacheManager.SaveErrorMessage(ex);
-        //}
-
-        //public static bool ResetLocalStorageToDefault()
-        //{
-        //    try
-        //    {
-        //        ConfigurationManager.ResetLocalStorageToDefault();
-        //        return true;
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        SaveErrorMessageToCache(ex);
-        //        return false;
-        //    }
-        //}
-
-        //public static Exception GetErrorMessage()
-        //{
-        //    return CacheManager.GetErrorMessage();
-        //}
     }
 }

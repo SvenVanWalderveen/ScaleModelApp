@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ScaleModelDomain.Storage
+namespace ScaleModelDomain.Base.Storage
 {
     internal static class GlobalVariables
     {
@@ -24,7 +24,7 @@ namespace ScaleModelDomain.Storage
         {
             get
             {
-                return StorageRootLocation + @"\Db.MyStorage";
+                return StorageRootLocation + @"\SMA.sqlite";
             }
         }
     }

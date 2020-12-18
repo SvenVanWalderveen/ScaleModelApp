@@ -1,11 +1,11 @@
-﻿using ScaleModelDomain.Storage.FileSystem.DataModels;
+﻿using ScaleModelDomain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ScaleModelDomain.Storage.Cache
+namespace ScaleModelDomain.Base.Storage
 {
-    internal static class AppCache
+    internal static class ApplicationCache
     {
         public static ConfigurationModel Config { get; internal set; }
     }

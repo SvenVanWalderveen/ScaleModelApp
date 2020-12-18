@@ -1,21 +1,27 @@
-﻿using ScaleModelDomain.Storage.Cache.Managers;
-using ScaleModelDomain.Storage.FileSystem.DataModels;
+﻿using ScaleModelDomain.Base.Storage;
 using System;
-using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
+
 using System.Xml.Serialization;
 
-namespace ScaleModelDomain.Storage.FileSystem.Managers
+namespace ScaleModelDomain.Managers
 {
-    internal static class FileSystemManager
+    internal static class FileManager
     {
+        #region Exists
         internal static bool RootFolderExists()
         {
             return Directory.Exists(GlobalVariables.StorageRootLocation);
         }
+        internal static bool FileExists(string fileName)
+        {
+            return File.Exists(GlobalVariables.StorageRootLocation + @"\" + fileName);
+        }
+        #endregion
 
+        #region Create files and directories
         internal static ResponseEnvelope CreateFolderStructure()
         {
             try
@@ -24,11 +30,27 @@ namespace ScaleModelDomain.Storage.FileSystem.Managers
                 File.Create(GlobalVariables.ConfigLocation).Close();
                 return new ResponseEnvelope();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new ResponseEnvelope(ex);
             }
         }
+
+        internal static ResponseEnvelope CreateDatabaseFile()
+        {
+            try
+            {
+                SQLiteConnection.CreateFile(GlobalVariables.DatabaseLocation);
+                return new ResponseEnvelope();
+            }
+            catch (Exception ex)
+            {
+                return new ResponseEnvelope(ex);
+            }
+        }
+
+        #endregion
+
 
 
 
@@ -54,7 +76,8 @@ namespace ScaleModelDomain.Storage.FileSystem.Managers
         //}
         internal static ResponseEnvelope SaveToXmlFile(string fileLocation, object obj)
         {
-            if(string.IsNullOrEmpty(fileLocation)) {
+            if (string.IsNullOrEmpty(fileLocation))
+            {
                 return new ResponseEnvelope(string.Format("No file location passed as parameter to method {0}", new StackTrace().GetFrame(0).GetMethod().Name));
             }
             if (obj == null)
@@ -90,11 +113,11 @@ namespace ScaleModelDomain.Storage.FileSystem.Managers
                 result.CallSuccessfull = true;
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new ResponseEnvelopeWithDataResult<object>(ex);
             }
-            
+
         }
         #endregion
     }

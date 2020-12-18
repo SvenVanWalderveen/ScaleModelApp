@@ -1,36 +1,37 @@
-﻿using ScaleModelDomain.Storage.Cache.Managers;
-using ScaleModelDomain.Storage.FileSystem.DataModels;
+﻿using ScaleModelDomain.Base.Storage;
+using ScaleModelDomain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ScaleModelDomain.Storage.FileSystem.Managers
+namespace ScaleModelDomain.Managers
 {
     internal static class ConfigurationManager
     {
         internal static void InitLocalStorage()
         {
-            if (!FileSystemManager.RootFolderExists())
+            if (!FileManager.RootFolderExists())
             {
-                ResponseEnvelope callResult = FileSystemManager.CreateFolderStructure();
-                if(!callResult.CallSuccessfull)
+                ResponseEnvelope callResult = FileManager.CreateFolderStructure();
+                if (!callResult.CallSuccessfull)
                 {
                     return;
                 }
                 ConfigurationModel model = CreateDefaultConfiguration();
                 CacheManager.UpdateConfig(model);
-                callResult = FileSystemManager.SaveToXmlFile(GlobalVariables.ConfigLocation, model);
+                callResult = FileManager.SaveToXmlFile(GlobalVariables.ConfigLocation, model);
             }
             if (!CacheManager.HasConfig())
             {
                 ConfigurationModel model = CreateDefaultConfiguration();
                 CacheManager.UpdateConfig(model);
-                FileSystemManager.SaveToXmlFile(GlobalVariables.ConfigLocation, model);
+                FileManager.SaveToXmlFile(GlobalVariables.ConfigLocation, model);
             }
-            else
+            if (!FileManager.FileExists(GlobalVariables.DatabaseLocation))
             {
-
+                DatabaseManager.CreateDatabase();
             }
+
         }
         internal static ConfigurationModel CreateDefaultConfiguration()
         {
@@ -40,8 +41,8 @@ namespace ScaleModelDomain.Storage.FileSystem.Managers
         #region read
         internal static ResponseEnvelopeWithDataResult<ConfigurationModel> ReadConfigFromFile()
         {
-            var result = FileSystemManager.ReadFromXmlFile(GlobalVariables.ConfigLocation, typeof(ConfigurationModel));
-            if(result.CallSuccessfull)
+            var result = FileManager.ReadFromXmlFile(GlobalVariables.ConfigLocation, typeof(ConfigurationModel));
+            if (result.CallSuccessfull)
             {
                 return new ResponseEnvelopeWithDataResult<ConfigurationModel>()
                 {
