@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ScaleModelDomain.DataModels
 {
-    public class InputFieldConfigurationDataModel
+    public class InputFieldConfigurationDataModel : BaseDataModel
     {
         public Guid Id { get; set; }
         public ControlType ControlType { get; set; }

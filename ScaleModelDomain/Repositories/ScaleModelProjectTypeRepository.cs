@@ -1,6 +1,7 @@
 ﻿using ScaleModelDomain.Converters;
 using ScaleModelDomain.Database.Entities.Projects;
 using ScaleModelDomain.DataModels;
+using ScaleModelDomain.Interfaces;
 using ScaleModelDomain.Managers;
 using System;
 using System.Collections.Generic;
@@ -10,15 +11,15 @@ using System.Text;
 
 namespace ScaleModelDomain.Repositories
 {
-    internal class InputFieldConfigurationRepository
+    internal class ScaleModelProjectTypeRepository
     {
         #region CREATE
-        internal static ResponseEnvelope CreateEntity(InputFieldConfigurationDataModel model)
+        internal static ResponseEnvelope CreateEntity(ScaleModelProjectTypeDataModel model)
         {
-            InputFieldConfiguration entity = model.ConvertToEntity();
+            ScaleModelProjectType entity = model.ConvertToEntity();
             entity.DateCreated = DateTime.Now;
             entity.DateLastModified = DateTime.Now;
-            return InputFieldConfigurationManager.Create(entity);
+            return ScaleModelProjectTypeManager.Create(entity);
         }
         #endregion
 
@@ -27,7 +28,7 @@ namespace ScaleModelDomain.Repositories
         {
             return new ResponseEnvelopeWithDataResult<BaseDataModel>()
             {
-                DataResult = InputFieldConfigurationManager.GetEntityFromGuid(id).ConvertToDataModel()
+                DataResult = ScaleModelProjectTypeManager.GetEntityFromGuid(id).ConvertToDataModel()
             };
         }
 
@@ -35,41 +36,41 @@ namespace ScaleModelDomain.Repositories
         {
             return new ResponseEnvelopeWithDataResult<BaseDataModel>()
             {
-                DataResult = InputFieldConfigurationManager.GetEntities().OrderByDescending(x => x.DateCreated).FirstOrDefault().ConvertToDataModel()
+                DataResult = ScaleModelProjectTypeManager.GetEntities().OrderByDescending(x => x.DateCreated).FirstOrDefault().ConvertToDataModel()
             };
         }
         internal static ResponseEnvelopeWithDataResult<List<BaseDataModel>> GetDataModels()
         {
             return new ResponseEnvelopeWithDataResult<List<BaseDataModel>>()
             {
-                DataResult = InputFieldConfigurationManager.GetEntities().ConvertToDataModels().ConvertAll(x => (BaseDataModel)x)
+                DataResult = ScaleModelProjectTypeManager.GetEntities().ConvertToDataModels().ConvertAll(x => (BaseDataModel)x)
             };
         }
         #endregion
 
         #region UPDATE
-        internal static ResponseEnvelope UpdateEntity(InputFieldConfigurationDataModel model)
+        internal static ResponseEnvelope UpdateEntity(ScaleModelProjectTypeDataModel model)
         {
             if (model == null)
             {
                 return new ResponseEnvelope(new Exception("Parameter 'model' is empty"));
             }
-            InputFieldConfiguration entity = InputFieldConfigurationManager.GetEntityFromGuid(model.Id);
+            ScaleModelProjectType entity = ScaleModelProjectTypeManager.GetEntityFromGuid(model.Id);
             entity.UpdateFromModel(model);
             entity.DateLastModified = DateTime.Now;
-            return InputFieldConfigurationManager.Update();
+            return ScaleModelProjectTypeManager.Update();
         }
         #endregion
 
         #region DELETE
-        internal static ResponseEnvelope DeleteEntity(InputFieldConfigurationDataModel model)
+        internal static ResponseEnvelope DeleteEntity(ScaleModelProjectTypeDataModel model)
         {
             if (model == null)
             {
                 return new ResponseEnvelope(new Exception("Parameter 'model' is empty"));
             }
-            InputFieldConfiguration entity = InputFieldConfigurationManager.GetEntityFromGuid(model.Id);
-            return InputFieldConfigurationManager.Delete(entity);
+            ScaleModelProjectType entity = ScaleModelProjectTypeManager.GetEntityFromGuid(model.Id);
+            return ScaleModelProjectTypeManager.Delete(entity);
         }
         #endregion
     }

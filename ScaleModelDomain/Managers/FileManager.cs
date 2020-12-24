@@ -78,11 +78,11 @@ namespace ScaleModelDomain.Managers
         {
             if (string.IsNullOrEmpty(fileLocation))
             {
-                return new ResponseEnvelope(string.Format("No file location passed as parameter to method {0}", new StackTrace().GetFrame(0).GetMethod().Name));
+                return new ResponseEnvelope(new Exception("Parameter 'File location' is empty"));
             }
             if (obj == null)
             {
-                return new ResponseEnvelope(string.Format("No object passed as parameter to method {0}", new StackTrace().GetFrame(0).GetMethod().Name));
+                return new ResponseEnvelope(new Exception("Parameter 'obj' is empty"));
             }
             try
             {

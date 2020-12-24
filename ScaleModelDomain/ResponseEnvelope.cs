@@ -1,6 +1,8 @@
 ﻿using ScaleModelDomain.Database.Entities.Projects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 using System.Text;
 
 namespace ScaleModelDomain
@@ -31,22 +33,56 @@ namespace ScaleModelDomain
 
     public class ResponseEnvelope
     {
+        MethodBase? _errorMethod;
+        string _errorMessage;
+        ResponseEnvelopeStatusCode _statusCode;
+        Exception _exception;
+
         public ResponseEnvelope()
         {
-            this.CallSuccessfull = true;
+            _statusCode = ResponseEnvelopeStatusCode.Succeeded;
         }
-        public ResponseEnvelope(Exception exception)
+        public ResponseEnvelope(Exception ex)
         {
-            this.Exception = exception;
-            this.CallSuccessfull = false;
+            _exception = ex;
         }
-        public ResponseEnvelope(string errorMessage)
+
+
+
+
+
+        public string ErrorMessage
         {
-            this.Exception = new Exception(errorMessage);                
-            this.CallSuccessfull = false;
+            get
+            {
+                if(string.IsNullOrEmpty(_errorMessage)) {
+                    return null;
+                }
+                if(_errorMethod == null)
+                {
+                    return _errorMessage;
+                }
+                else
+                {
+                    return string.Format("{0} (Method: {1})", _errorMessage, _errorMethod);
+                }
+            }
         }
-        public bool CallSuccessfull { get; set; }
-        public Exception Exception { get; set; }
+        public Exception Exception { get; }
+        public bool CallSuccessfull
+        {
+            get
+            {
+                return _statusCode == ResponseEnvelopeStatusCode.Succeeded;
+            }
+        }
+       
     }
+    public enum ResponseEnvelopeStatusCode
+    {
+        Failed = 0,
+        Succeeded = 1
+    }
+
 }
 

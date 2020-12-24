@@ -37,6 +37,10 @@ namespace ScaleModelDomain.Converters
 
         internal static InputFieldConfigurationDataModel ConvertToDataModel(this InputFieldConfiguration entity)
         {
+            if(entity == null)
+            {
+                return null;
+            }
             return new InputFieldConfigurationDataModel()
             {
                 Id = entity.Id,
