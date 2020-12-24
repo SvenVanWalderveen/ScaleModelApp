@@ -17,7 +17,7 @@ namespace ScaleModelDomain.Managers
         }
         internal static bool FileExists(string fileName)
         {
-            return File.Exists(GlobalVariables.StorageRootLocation + @"\" + fileName);
+            return File.Exists(fileName);
         }
         #endregion
 

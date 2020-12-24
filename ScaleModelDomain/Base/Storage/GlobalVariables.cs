@@ -24,7 +24,7 @@ namespace ScaleModelDomain.Base.Storage
         {
             get
             {
-                return StorageRootLocation + @"\SMA.sqlite";
+                return StorageRootLocation + @"\ScaleModelApp.sqlite";
             }
         }
     }

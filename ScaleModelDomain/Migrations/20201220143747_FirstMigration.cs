@@ -18,7 +18,7 @@ namespace ScaleModelDomain.Migrations
                     ToolTip = table.Column<string>(type: "TEXT", nullable: true),
                     IsRequired = table.Column<bool>(type: "INTEGER", nullable: false),
                     MaxLength = table.Column<int>(type: "INTEGER", nullable: true),
-                    ValidationRule = table.Column<int>(type: "INTEGER", nullable: false),
+                    ValidationRule = table.Column<int>(type: "INTEGER", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "TEXT", nullable: false),
                     DateLastModified = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },

@@ -1,13 +1,13 @@
 ﻿using ScaleModelDomain.Base.Enums;
-using ScaleModelDomain.Database.Entities.Base;
-using ScaleModelDomain.DataModels;
+using ScaleModelDomain.Database.Entities.Projects;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-namespace ScaleModelDomain.Database.Entities.Projects
+namespace ScaleModelDomain.DataModels
 {
-    internal class InputFieldConfiguration : BaseDbDateTimeEntity
+    public class InputFieldConfigurationDataModel
     {
         public Guid Id { get; set; }
         public ControlType ControlType { get; set; }
@@ -18,8 +18,5 @@ namespace ScaleModelDomain.Database.Entities.Projects
         public bool IsRequired { get; set; }
         public int? MaxLength { get; set; }
         public ValidationRule? ValidationRule { get; set; }
-        public List<ScaleModelProjectTypeInputField> ScaleModelProjectTypeInputFields { get; set; }
-
-      
     }
 }

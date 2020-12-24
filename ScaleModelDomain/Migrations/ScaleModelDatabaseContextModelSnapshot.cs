@@ -134,7 +134,7 @@ namespace ScaleModelDomain.Migrations
                     b.Property<string>("ToolTip")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ValidationRule")
+                    b.Property<int?>("ValidationRule")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");

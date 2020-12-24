@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScaleModelDomain.Database.Entities.Projects;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,6 +16,13 @@ namespace ScaleModelDomain
             this.Exception = exception;
             this.CallSuccessfull = false;
         }
+        public ResponseEnvelopeWithDataResult(T data)
+        {
+            this.DataResult = data;
+            this.CallSuccessfull = true;
+        }
+
+      
 
         public T DataResult { get; set; }
         public bool CallSuccessfull { get; set; }

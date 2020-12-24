@@ -9,7 +9,7 @@ using ScaleModelDomain.Database.Context;
 namespace ScaleModelDomain.Migrations
 {
     [DbContext(typeof(ScaleModelDatabaseContext))]
-    [Migration("20201218204518_FirstMigration")]
+    [Migration("20201220143747_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,7 +136,7 @@ namespace ScaleModelDomain.Migrations
                     b.Property<string>("ToolTip")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ValidationRule")
+                    b.Property<int?>("ValidationRule")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
