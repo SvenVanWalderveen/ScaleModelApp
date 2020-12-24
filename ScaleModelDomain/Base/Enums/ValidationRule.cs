@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ScaleModelDomain.Base.Enums
 {
-    internal enum ValidationRule
+    public enum ValidationRule
     {
         NumericInput = 0
     }

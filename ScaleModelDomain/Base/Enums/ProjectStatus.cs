@@ -6,9 +6,9 @@ namespace ScaleModelDomain.Base.Enums
 {
     internal enum ActivityStatus
     {
-        NEW = 0,
-        ACTIVE = 1,
-        FINISHED = 2,
-        ABORTED = 3
+        New = 0,
+        Active = 1,
+        Finished = 2,
+        Aborted = 3
     }
 }

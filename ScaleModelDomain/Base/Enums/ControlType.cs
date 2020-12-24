@@ -4,11 +4,11 @@ using System.Text;
 
 namespace ScaleModelDomain.Base.Enums
 {
-    internal enum ControlType
+    public enum ControlType
     {
-        TEXTBOX = 0,
-        NUMERIC_TEXTBOX = 1,
-        COMBOBOX = 2,
-        CHECKBOX = 3
+        TextBox = 0,
+        NumericTextBox = 1,
+        ComboBox = 2,
+        CheckBox = 3
     }
 }
